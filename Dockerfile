@@ -83,6 +83,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY --from=build-env /usr/local/ /usr/local/
 COPY fake-supervisord /usr/bin/supervisord
 
+RUN apt-get -y --no-install-recommends install awscli \
+    && aws configure set region us-east-1
+
 RUN groupadd -g "${PGID:-0}" -o valheim \
     && useradd -g "${PGID:-0}" -u "${PUID:-0}" -o --create-home valheim \
     && dpkg --add-architecture i386 \
