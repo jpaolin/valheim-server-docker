@@ -1,4 +1,4 @@
-FROM debian:stable-slim as build-env
+FROM debian:bullseye-slim as build-env
 ENV DEBIAN_FRONTEND=noninteractive
 ARG TESTS
 ARG SOURCE_COMMIT
@@ -95,7 +95,7 @@ RUN groupadd -g "${PGID:-0}" -o valheim \
     && apt-get -y dist-upgrade \
     && apt-get -y --no-install-recommends install \
         libc6-dev \
-        lib32gcc1 \
+        lib32gcc-s1 \
         libsdl2-2.0-0 \
         libsdl2-2.0-0:i386 \
         cron \
