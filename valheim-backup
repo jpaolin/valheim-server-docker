@@ -55,7 +55,7 @@ backup() {
     info "Backing up Valheim server worlds to $backup_file"
     mkdir -p "$BACKUPS_DIRECTORY"
     chmod "$BACKUPS_DIRECTORY_PERMISSIONS" "$BACKUPS_DIRECTORY"
-    zip -r "$backup_file" "worlds/"
+    zip -r "$backup_file" "." -x "$BACKUPS_DIRECTORY/*"
     chmod "$BACKUPS_FILE_PERMISSIONS" "$backup_file"
     post_backup_hook "$backup_file"
 }
